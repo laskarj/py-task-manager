@@ -22,3 +22,10 @@ class Worker(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}({self.position})"
+
+
+class TaskType(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
