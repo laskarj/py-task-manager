@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
+
 class Priority(StrEnum):
     URGENT = auto()
     HIGH = auto()
@@ -32,6 +33,8 @@ class Worker(AbstractUser):
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}({self.position})"
 
+    # TODO: Add absolute url
+
 
 class TaskType(models.Model):
     name = models.CharField(max_length=255)
@@ -58,3 +61,11 @@ class Task(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="tasks"
     )
+
+    # TODO: Add absolute url
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        ordering = ("deadline", )
